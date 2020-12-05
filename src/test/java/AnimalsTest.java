@@ -11,12 +11,12 @@ public class AnimalsTest {
         DB.sql2o = new Sql2o("jdbc:postgresql://localhost:5432/wildlife_tracker_test", "emile067", "mushimiyimana");
     }
 
-
     @Test
     public void animal_instantiatesCorrectly_true() {
         Animals testAnimal = new Animals("Gorilla");
         assertEquals(true, testAnimal instanceof Animals);
     }
+
     @Test
     public void getName_animalInstantiatesWithName_Gorilla() {
         Animals testAnimal = new Animals("Gorilla");

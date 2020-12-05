@@ -6,6 +6,7 @@ import java.util.Objects;
 public class Animals {
     public Animals(String name) {
         this.name = name;
+        this.endangered = false;
     }
 
     public String getName() {
@@ -14,14 +15,6 @@ public class Animals {
 
     public int getId() {
         return id;
-    }
-
-    public String getHealth() {
-        return health;
-    }
-
-    public String getAge() {
-        return age;
     }
     public void save() {
         try(Connection con = DB.sql2o.open()) {
@@ -54,7 +47,5 @@ public class Animals {
 
     private String name;
     private int id;
-    private boolean endangered;
-    private String health = null;
-    private String age = null;
+    public boolean endangered;
 }
