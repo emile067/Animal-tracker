@@ -3,7 +3,7 @@ import org.sql2o.Connection;
 import java.util.List;
 import java.util.Objects;
 
-public class Animals {
+public class Animals implements AnimalInterface{
     public Animals(String name) {
         this.name = name;
         this.endangered = false;
@@ -23,6 +23,37 @@ public class Animals {
                     .addParameter("name", this.name)
                     .executeUpdate()
                     .getKey();
+        }
+    }
+
+    @Override
+    public void update(String name) {
+        String sql = "UPDATE animals SET name=:name WHERE id=:id";
+        try (Connection conn = DB.sql2o.open()) {
+            conn.createQuery(sql)
+                    .addParameter("name", name)
+                    .addParameter("id", id)
+                    .executeUpdate();
+        }
+    }
+
+    @Override
+    public void delete() {
+        try (Connection conn = DB.sql2o.open()){
+            String sql = "DELETE FROM animals WHERE id=:id;";
+            conn.createQuery(sql)
+                    .addParameter("id",id)
+                    .executeUpdate();
+        }
+    }
+
+    public static Animals findById(int id) {
+        try(Connection conn = DB.sql2o.open()){
+            String sql = "SELECT * FROM  animals WHERE id=:id";
+            return conn.createQuery(sql)
+                    .addParameter("id",id)
+                    .throwOnMappingFailure(false)
+                    .executeAndFetchFirst(Animals.class);
         }
     }
 
