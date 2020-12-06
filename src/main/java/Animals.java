@@ -1,4 +1,5 @@
 import org.sql2o.Connection;
+import org.sql2o.Sql2oException;
 
 import java.util.List;
 import java.util.Objects;
@@ -16,11 +17,13 @@ public class Animals implements AnimalInterface{
     public int getId() {
         return id;
     }
+    @Override
     public void save() {
         try(Connection con = DB.sql2o.open()) {
-            String sql = "INSERT INTO animals (name) VALUES (:name)";
+            String sql = "INSERT INTO animals (name,endangered) VALUES (:name,:endangered)";
             this.id = (int) con.createQuery(sql, true)
                     .addParameter("name", this.name)
+                    .addParameter("endangered", this.endangered)
                     .executeUpdate()
                     .getKey();
         }
@@ -47,6 +50,18 @@ public class Animals implements AnimalInterface{
         }
     }
 
+    @Override
+    public void deleteById(int id) {
+        String sql = "DELETE from tasks WHERE id=:id";
+        try (Connection con = DB.sql2o.open()) {
+            con.createQuery(sql)
+                    .addParameter("id", id)
+                    .executeUpdate();
+        } catch (Sql2oException ex){
+            System.out.println(ex);
+        }
+    }
+
     public static Animals findById(int id) {
         try(Connection conn = DB.sql2o.open()){
             String sql = "SELECT * FROM  animals WHERE id=:id";
@@ -60,7 +75,7 @@ public class Animals implements AnimalInterface{
     public static List<Animals> all() {
         String sql = "SELECT * FROM animals";
         try(Connection con = DB.sql2o.open()) {
-            return con.createQuery(sql).executeAndFetch(Animals.class);
+            return con.createQuery(sql).throwOnMappingFailure(false).executeAndFetch(Animals.class);
         }
     }
     @Override
@@ -76,7 +91,7 @@ public class Animals implements AnimalInterface{
         return Objects.hash(name);
     }
 
-    private String name;
-    private int id;
+    public String name;
+    public int id;
     public boolean endangered;
 }

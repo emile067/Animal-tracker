@@ -44,6 +44,14 @@ public class AnimalsTest {
         assertEquals(foundAnimal,animal);
     }
 
+//    @Test
+//    public void animal_delete() {
+//        Animals animal = new Animals("Chui");
+//        animal.save();
+//        Animals foundAnimal = Animals.findById(animal.getId());
+//        assertEquals(foundAnimal,animal);
+//    }
+
     @After
     public void tearDown() throws Exception {
         try(Connection con = DB.sql2o.open()) {
