@@ -1,5 +1,6 @@
 plugins {
     id 'java'
+    id 'application'
 }
 
 group 'com.emile.animal-tracker'
@@ -21,3 +22,5 @@ dependencies {
 // https://mvnrepository.com/artifact/org.postgresql/postgresql
     compile group: 'org.postgresql', name: 'postgresql', version: '42.1.4'
 }
+apply plugin: 'java'
+applicationName = 'emilewildlife-tracker'
