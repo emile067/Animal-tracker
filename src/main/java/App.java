@@ -18,6 +18,13 @@ public class App {
             return new ModelAndView(model, "animal-form.hbs");
         }, new HandlebarsTemplateEngine());
 
+        get("/animals", (request, response) -> {
+            Map<String, Object> model = new HashMap<>();
+            model.put("animals",Animals.all());
+            model.put("endangered",EndangeredAnimal.allEndangered());
+            return new ModelAndView(model, "animals.hbs");
+        }, new HandlebarsTemplateEngine());
+
         get("/endangered/new", (request, response) -> {
             Map<String, Object> model = new HashMap<>();
             model.put("adult",EndangeredAnimal.ADULT);
@@ -34,6 +41,7 @@ public class App {
             String name = request.queryParams("name");
             Animals animal = new Animals(name);
             animal.save();
+            response.redirect("/animals");
             return null;
         }, new HandlebarsTemplateEngine());
 
@@ -44,6 +52,7 @@ public class App {
             String age = request.queryParams("age");
             EndangeredAnimal animal = new EndangeredAnimal(name,health,age);
             animal.save();
+            response.redirect("/animals");
             return null;
         }, new HandlebarsTemplateEngine());
     }

@@ -14,25 +14,25 @@ public class EndangeredAnimalTest {
     }
     @Test
     public void animal_instantiatesCorrectly_true() {
-        EndangeredAnimal testAnimal = new EndangeredAnimal("Gorilla",EndangeredAnimal.ADULT);
+        EndangeredAnimal testAnimal = new EndangeredAnimal("Gorilla",EndangeredAnimal.ILL,EndangeredAnimal.ADULT);
         assertEquals(true, testAnimal instanceof EndangeredAnimal);
     }
     @Test
     public void getName_animalInstantiatesWithName_Gorilla() {
-        Animals testAnimal = new EndangeredAnimal("Gorilla",EndangeredAnimal.ADULT);
+        Animals testAnimal = new EndangeredAnimal("Gorilla",EndangeredAnimal.ILL,EndangeredAnimal.ADULT);
         assertEquals("Gorilla", testAnimal.getName());
     }
 
     @Test
     public void equals_returnsTrueIfNameIsTheSame() {
-        EndangeredAnimal firstAnimal = new EndangeredAnimal("Gorilla",EndangeredAnimal.ADULT);
-        EndangeredAnimal anotherAnimal = new EndangeredAnimal("Gorilla",EndangeredAnimal.ADULT);
+        EndangeredAnimal firstAnimal = new EndangeredAnimal("Gorilla",EndangeredAnimal.ILL,EndangeredAnimal.ADULT);
+        EndangeredAnimal anotherAnimal = new EndangeredAnimal("Gorilla",EndangeredAnimal.ILL,EndangeredAnimal.ADULT);
         assertTrue(firstAnimal.equals(anotherAnimal));
     }
 
     @Test
     public void save_CorrectlyIntoTheDatabase() {
-        EndangeredAnimal animal = new EndangeredAnimal("Gorilla",EndangeredAnimal.ADULT);;
+        EndangeredAnimal animal = new EndangeredAnimal("Gorilla",EndangeredAnimal.ILL,EndangeredAnimal.ADULT);;
         animal.save();
         assertTrue(EndangeredAnimal.allEndangered().get(0).equals(animal));
     }

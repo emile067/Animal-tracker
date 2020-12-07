@@ -73,7 +73,7 @@ public class Animals implements AnimalInterface{
     }
 
     public static List<Animals> all() {
-        String sql = "SELECT * FROM animals";
+        String sql = "SELECT * FROM animals WHERE endangered=false";
         try(Connection con = DB.sql2o.open()) {
             return con.createQuery(sql).throwOnMappingFailure(false).executeAndFetch(Animals.class);
         }
