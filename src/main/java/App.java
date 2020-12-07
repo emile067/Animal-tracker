@@ -10,5 +10,16 @@ public class App {
         get("/", (request, response) -> {
             Map<String, Object> model = new HashMap<>();
             return new ModelAndView(model, "index.hbs");
-        }, new HandlebarsTemplateEngine());    }
+        }, new HandlebarsTemplateEngine());
+
+        get("/animal/new", (request, response) -> {
+            Map<String, Object> model = new HashMap<>();
+            return new ModelAndView(model, "animal-form.hbs");
+        }, new HandlebarsTemplateEngine());
+
+        get("/endangered/new", (request, response) -> {
+            Map<String, Object> model = new HashMap<>();
+            return new ModelAndView(model, "endangeredAnimal-form.hbs");
+        }, new HandlebarsTemplateEngine());
+    }
 }

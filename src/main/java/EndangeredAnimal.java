@@ -5,7 +5,6 @@ import java.util.List;
 public class EndangeredAnimal extends Animals {
     private String health;
     private String age;
-    public static final String ANIMAL_TYPE = "endangered";
     public static final String ADULT = "adult";
     public static final String YOUNG = "young";
     public static final String NEWBORN = "newborn";
