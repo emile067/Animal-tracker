@@ -1,0 +1,13 @@
+{{#partial "styles"}}
+    <link rel='stylesheet' href='/css/styles.css'>
+{{/partial}}
+{{#partial "content"}}
+    <div class="container bg-content">
+    <a class="btn btn-outline-success" type="button" id="non-endangered" href="/animal/new">Non-endangered</a>
+    <a class="btn btn-outline-success" type="button" id="endangered" href="/endangered/new">Endangered</a>
+    {{#block "form"}}
+
+    {{/block}}
+    </div>
+{{/partial}}
+{{> layout.hbs}}

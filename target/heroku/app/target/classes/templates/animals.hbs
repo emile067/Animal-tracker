@@ -1,0 +1,42 @@
+{{#partial "styles"}}
+    <link rel="stylesheet" href="css/styles.css">
+{{/partial}}
+{{#partial "content"}}
+    <h3>Record into sightings when you ome across one of these</h3>
+    <table id="dtBasicExample" class="table" width="100%">
+        <thead>
+        <tr>
+            <th class="th-sm">id
+            </th>
+            <th class="th-sm">Name
+            </th>
+            <th class="th-sm">Status
+            </th>
+            <th class="th-sm">Health
+            </th>
+            <th class="th-sm">Age
+        </tr>
+        </thead>
+        <tbody>
+        {{#each endangered}}
+            <tr>
+                <td>{{id}}</td>
+                <td>{{name}}</td>
+                <td>Endangered</td>
+                <td>{{health}}</td>
+                <td>{{age}}</td>
+            </tr>
+        {{/each}}
+        {{#each animals}}
+            <tr>
+                <td>{{id}}</td>
+                <td>{{name}}</td>
+                <td>Not endangered</td>
+                <td>_</td>
+                <td>_</td>
+            </tr>
+        {{/each}}
+        </tbody>
+    </table>
+{{/partial}}
+{{> layout.hbs}}

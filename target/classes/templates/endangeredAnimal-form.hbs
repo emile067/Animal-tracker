@@ -1,0 +1,31 @@
+{{#partial "styles"}}
+    <link rel='stylesheet' href='/css/styles.css'>
+{{/partial}}
+{{#partial "form"}}
+    <div class="container">
+    <form action="/endangered" method="post">
+        <div class="form-group md-form">
+<!--            <label for="name">Animal Name</label>-->
+            <input placeholder="Animal Name" id="name" name="name" type="text" class="form-control">
+        </div>
+        <div class="form-group md-form">
+            <select class="browser-default custom-select" id="health" name="health">
+                <option selected>Open this select health</option>
+                <option value="{{healthy}}">{{healthy}}</option>
+                <option value="{{average}}">{{average}}</option>
+                <option value="{{ill}}">{{ill}}</option>
+            </select>
+        </div>
+        <div class="form-group md-form">
+            <select class="browser-default custom-select" id="age" name="age">
+            <option selected>Open this select age</option>
+            <option value="{{adult}}">{{adult}}</option>
+            <option value="{{young}}">{{young}}</option>
+            <option value="{{newborn}}">{{newborn}}</option>
+        </select>
+        </div>
+        <button type="submit" class="btn btn-dark-green">Add Animal</button>
+    </form>
+    </div>
+{{/partial}}
+{{> anima-form-layout.hbs}}
