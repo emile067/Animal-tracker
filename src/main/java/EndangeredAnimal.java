@@ -12,10 +12,10 @@ public class EndangeredAnimal extends Animals {
     public static final String AVERAGE = "average healthy";
     public static final String ILL = "Ill";
 
-    public EndangeredAnimal(String name, String age){
+    public EndangeredAnimal(String name,String health, String age){
         super(name);
         this.endangered = true;
-        this.health = HEALTHY;
+        this.health = health;
         this.age = age;
     }
     public static EndangeredAnimal findById(int id) {

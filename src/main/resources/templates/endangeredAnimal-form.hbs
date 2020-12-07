@@ -3,25 +3,25 @@
 {{/partial}}
 {{#partial "form"}}
     <div class="container">
-    <form action="/endangered/new" method="post">
+    <form action="/endangered" method="post">
         <div class="form-group md-form">
-            <label for="name">Animal Name</label>
-            <input id="name" name="name" type="text" class="form-control">
+<!--            <label for="name">Animal Name</label>-->
+            <input placeholder="Animal Name" id="name" name="name" type="text" class="form-control">
         </div>
         <div class="form-group md-form">
-            <select class="browser-default custom-select">
-                <option selected>Open this select menu</option>
-                <option value="1">One</option>
-                <option value="2">Two</option>
-                <option value="3">Three</option>
+            <select class="browser-default custom-select" id="health" name="health">
+                <option selected>Open this select health</option>
+                <option value="{{healthy}}">{{healthy}}</option>
+                <option value="{{average}}">{{average}}</option>
+                <option value="{{ill}}">{{ill}}</option>
             </select>
         </div>
         <div class="form-group md-form">
-            <select class="browser-default custom-select">
-            <option selected>Open this select menu</option>
-            <option value="1">One</option>
-            <option value="2">Two</option>
-            <option value="3">Three</option>
+            <select class="browser-default custom-select" id="age" name="age">
+            <option selected>Open this select age</option>
+            <option value="{{adult}}">{{adult}}</option>
+            <option value="{{young}}">{{young}}</option>
+            <option value="{{newborn}}">{{newborn}}</option>
         </select>
         </div>
         <button type="submit" class="btn btn-dark-green">Add Animal</button>
