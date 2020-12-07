@@ -41,18 +41,8 @@ public class Animals implements AnimalInterface{
     }
 
     @Override
-    public void delete() {
-        try (Connection conn = DB.sql2o.open()){
-            String sql = "DELETE FROM animals WHERE id=:id;";
-            conn.createQuery(sql)
-                    .addParameter("id",id)
-                    .executeUpdate();
-        }
-    }
-
-    @Override
     public void deleteById(int id) {
-        String sql = "DELETE from tasks WHERE id=:id";
+        String sql = "DELETE from animals WHERE id=:id";
         try (Connection con = DB.sql2o.open()) {
             con.createQuery(sql)
                     .addParameter("id", id)

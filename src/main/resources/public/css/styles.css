@@ -14,3 +14,7 @@ body{
     background:none;
     color: grey;
 }
+#home-welcome{
+    position:absolute;
+    top: 35%;
+}

@@ -1,4 +1,5 @@
 import org.sql2o.Connection;
+import org.sql2o.Sql2oException;
 
 import java.util.List;
 import java.util.Objects;
@@ -43,13 +44,24 @@ public class Sightings implements SightingsInterface{
         }
     }
 
-    @Override
-    public void delete() {
+    public static void delete(int id) {
+        String sql = "DELETE from sightings WHERE id=:id";
         try (Connection con = DB.sql2o.open()) {
-            String sql = "DELETE FROM sightings WHERE id = :id;";
             con.createQuery(sql)
                     .addParameter("id", id)
                     .executeUpdate();
+        } catch (Sql2oException ex){
+            System.out.println(ex);
+        }
+    }
+
+    public static Sightings findById(int id) {
+        try(Connection conn = DB.sql2o.open()){
+            String sql = "SELECT * FROM  sightings WHERE id=:id";
+            return conn.createQuery(sql)
+                    .addParameter("id",id)
+                    .throwOnMappingFailure(false)
+                    .executeAndFetchFirst(Sightings.class);
         }
     }
 
