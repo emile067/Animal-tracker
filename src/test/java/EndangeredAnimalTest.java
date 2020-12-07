@@ -1,3 +1,4 @@
+
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -10,7 +11,7 @@ public class EndangeredAnimalTest {
 
     @Before
     public void setUp() throws Exception {
-        DB.sql2o = new Sql2o("jdbc:postgresql://localhost:5432/wildlife_tracker_test", "emile067", "mushimiyimana");
+        DB.sql2o = new Sql2o("jdbc:postgresql://ec2-35-169-184-61.compute-1.amazonaws.com:5432/dc7m9s2sra11c1", "aybfxjapoxbaeg", "866a8d849157dce317cd8842de2599053befb3425ed20fd714b1d7285efd5368");
     }
     @Test
     public void animal_instantiatesCorrectly_true() {

@@ -17,14 +17,16 @@ public class App {
 
         port(getHerokuAssignedPort());
         staticFileLocation("/public");
+
         get("/", (request, response) -> {
             Map<String, Object> model = new HashMap<>();
             return new ModelAndView(model, "index.hbs");
         }, new HandlebarsTemplateEngine());
 
-        get("/animal/new", (request, response) -> {
+        get("/sightings", (request, response) -> {
             Map<String, Object> model = new HashMap<>();
-            return new ModelAndView(model, "animal-form.hbs");
+            model.put("sightings",Sightings.all());
+            return new ModelAndView(model, "sightings.hbs");
         }, new HandlebarsTemplateEngine());
 
         get("/animals", (request, response) -> {
@@ -34,10 +36,9 @@ public class App {
             return new ModelAndView(model, "animals.hbs");
         }, new HandlebarsTemplateEngine());
 
-        get("/sightings", (request, response) -> {
+        get("/animal/new", (request, response) -> {
             Map<String, Object> model = new HashMap<>();
-            model.put("sightings",Sightings.all());
-            return new ModelAndView(model, "sightings.hbs");
+            return new ModelAndView(model, "animal-form.hbs");
         }, new HandlebarsTemplateEngine());
 
         get("/sighting/new", (request, response) -> {
