@@ -1,0 +1,33 @@
+{{#partial "styles"}}
+    <link rel='stylesheet' href='/css/styles.css'>
+{{/partial}}
+{{#partial "content"}}
+    {{#if sightings}}
+    <table id="dtBasicExample" class="table" width="100%">
+        <thead>
+        <tr>
+            <th class="th-sm">Animal Id
+            </th>
+            <th class="th-sm">location
+            </th>
+            <th class="th-sm">Ranger Name
+            </th>
+            <th class="th-sm"><a class="btn btn-outline-success" type="button" id="non-endangered" href="/sighting/new">Add sighting</a>
+            </th>
+        </tr>
+        </thead>
+        <tbody>
+        {{#each sightings}}
+            <tr>
+                <td>{{animaId}}</td>
+                <td>{{location}}</td>
+                <td>{{rangerName}}</td>
+            </tr>
+        {{/each}}
+        </tbody>
+    </table>
+        {{else}}
+        No sightings yet recorder.<br><a class="btn btn-outline-success" type="button" id="non-endangered" href="/sighting/new">Add sighting</a>
+    {{/if}}
+{{/partial}}
+{{> layout.hbs}}

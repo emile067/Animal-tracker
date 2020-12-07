@@ -25,6 +25,26 @@ public class App {
             return new ModelAndView(model, "animals.hbs");
         }, new HandlebarsTemplateEngine());
 
+        get("/sightings", (request, response) -> {
+            Map<String, Object> model = new HashMap<>();
+            model.put("sightings",Sightings.all());
+            return new ModelAndView(model, "sightings.hbs");
+        }, new HandlebarsTemplateEngine());
+
+        get("/sighting/new", (request, response) -> {
+            Map<String, Object> model = new HashMap<>();
+            model.put("animals",Animals.all());
+            model.put("endangered",EndangeredAnimal.allEndangered());
+            return new ModelAndView(model, "sightings-form.hbs");
+        }, new HandlebarsTemplateEngine());
+
+        get("/animals", (request, response) -> {
+            Map<String, Object> model = new HashMap<>();
+            model.put("animals",Animals.all());
+            model.put("endangered",EndangeredAnimal.allEndangered());
+            return new ModelAndView(model, "animals.hbs");
+        }, new HandlebarsTemplateEngine());
+
         get("/endangered/new", (request, response) -> {
             Map<String, Object> model = new HashMap<>();
             model.put("adult",EndangeredAnimal.ADULT);
@@ -42,6 +62,17 @@ public class App {
             Animals animal = new Animals(name);
             animal.save();
             response.redirect("/animals");
+            return null;
+        }, new HandlebarsTemplateEngine());
+
+        post("/sighting", (request, response) -> {
+            Map<String, Object> model = new HashMap<>();
+            int animalId = Integer.parseInt(request.queryParams("animalId"));
+            String location = request.queryParams("location");
+            String rangerName = request.queryParams("rangerName");
+            Sightings newSight = new Sightings(animalId,location,rangerName);
+            newSight.save();
+            response.redirect("/sightings");
             return null;
         }, new HandlebarsTemplateEngine());
 
